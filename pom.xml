@@ -601,7 +601,7 @@ Import-Package: \\
             <configuration>
               <rules>
                 <requireJavaVersion>
-                  <version>[17.0,18.0)</version>
+                  <version>[11.0, 17.0)</version>
                 </requireJavaVersion>
               </rules>
             </configuration>
