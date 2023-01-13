@@ -10,24 +10,24 @@
 			<supported-bridge-type-refs>
 			<bridge-type-ref id="ModuledSmartHomeBridge" />
 			</supported-bridge-type-refs>
-		 -->
+		-->
 
-		<label>ModuledSmartHome -  Fan Speed Control</label>
+		<label>ModuledSmartHome - Fan Speed Control</label>
 		<description>A single thing capable for controle the speed and direction of a ceiling fan</description>
 		<category>HVAC</category>
-
-		<representation-property>uniqueId</representation-property>
 
 		<channels>
 			<channel id="channel1" typeId="fanSpeed"/>
 			<channel id="channel1" typeId="fanDirection"/>
 		</channels>
 
+		<representation-property>uniqueId</representation-property>
+
 		<config-description>
-			<paramenter name"uniqueId" type="text">
+			<parameter name="uniqueId" type="text">
 				<label>Unique Id</label>
 				<description>The Unique Id for Representation Property</description>
-
+			</parameter>
 			<parameter name="hostname" type="text" required="true">
 				<context>network-address</context>
 				<label>Hostname</label>
@@ -53,11 +53,11 @@
 		<label>Setpoint Speed</label><!-- Use uppercase words, except prepositions. 2-3 words, max 25 chars -->
 		<description>Channel for setting speed</description>
 		<category>HVAC</category>
-		 <state min="1" max="5" step="1" pattern="%d" readOnly="false" />
-		 <tags>
+		<tags>
 			<tag>Control</tag>
 			<tag>Wind</tag>
 		</tags>
+		<state min="1" max="5" step="1" pattern="%d" readOnly="false"/>
 	</channel-type>
 
 	<channel-type id="fanDirection">
@@ -65,16 +65,16 @@
 		<label>Set Direction</label><!-- Use uppercase words, except prepositions. 2-3 words, max 25 chars -->
 		<description>Channel for setting direction</description>
 		<category>HVAC</category>
+		<tags>
+			<tag>Control</tag>
+			<tag>Wind</tag>
+		</tags>
 		<command>
 			<options>
 				<option value="UP">UP Direction</option>
 				<option value="DOWN">DOWN Direction</option>
 			</options>
 		</command>
-		<tags>
-			<tag>Control</tag>
-			<tag>Wind</tag>
-		</tags>
 	</channel-type>
 
 </thing:thing-descriptions>
