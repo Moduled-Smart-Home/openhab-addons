@@ -25,7 +25,8 @@ public class ModuledSmartHomeConfiguration {
     /**
      * Sample configuration parameters. Replace with your own.
      */
-    public String hostname = "";
-    public String password = "";
+    public String uniqueId = "testeUniqueID";
+    public String hostname = "testeHostname";
+    public String password = "testePassword";
     public int refreshInterval = 600;
 }

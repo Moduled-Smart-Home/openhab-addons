@@ -27,8 +27,9 @@ public class ModuledSmartHomeBindingConstants {
     private static final String BINDING_ID = "moduledsmarthome";
 
     // List of all Thing Type UIDs
-    public static final ThingTypeUID THING_TYPE_SAMPLE = new ThingTypeUID(BINDING_ID, "sample");
+    public static final ThingTypeUID THING_TYPE_FAN_SPEED_CONTROL = new ThingTypeUID(BINDING_ID, "fanSpeedControl");
 
     // List of all Channel ids
     public static final String CHANNEL_1 = "channel1";
+    public static final String CHANNEL_2 = "channel2";
 }
