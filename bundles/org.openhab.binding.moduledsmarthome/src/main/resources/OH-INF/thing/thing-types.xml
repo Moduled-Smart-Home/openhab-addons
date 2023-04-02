@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<thing:thing-descriptions bindingId="moduledsmarthome"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:thing="https://openhab.org/schemas/thing-description/v1.0.0"
+	xsi:schemaLocation="https://openhab.org/schemas/thing-description/v1.0.0 https://openhab.org/schemas/thing-description-1.0.0.xsd">
+
+	<!-- Sample Thing Type -->
+	<thing-type id="fanSpeedControl">
+		<!-- Comment this in for Things which need a Bridge to function.
+			<supported-bridge-type-refs>
+			<bridge-type-ref id="ModuledSmartHomeBridge" />
+			</supported-bridge-type-refs>
+		-->
+
+		<label>ModuledSmartHome - Fan Speed Control</label>
+		<description>A single thing capable for controle the speed and direction of a ceiling fan</description>
+		<category>HVAC</category>
+
+		<channels>
+			<channel id="fanSpeed" typeId="fanSpeed"/>
+			<channel id="fanDirection" typeId="fanDirection"/>
+		</channels>
+
+		<representation-property>uniqueId</representation-property>
+
+		<config-description>
+			<parameter name="uniqueId" type="text">
+				<label>Unique Id</label>
+				<description>The Unique Id for Representation Property</description>
+			</parameter>
+			<parameter name="hostname" type="text" required="true">
+				<context>network-address</context>
+				<label>Hostname</label>
+				<description>Hostname or IP address of the device</description>
+			</parameter>
+			<parameter name="password" type="text" required="true">
+				<context>password</context>
+				<label>Password</label>
+				<description>Password to access the device</description>
+			</parameter>
+			<parameter name="refreshInterval" type="integer" unit="s" min="1">
+				<label>Refresh Interval</label>
+				<description>Interval the device is polled in sec.</description>
+				<default>600</default>
+				<advanced>true</advanced>
+			</parameter>
+		</config-description>
+	</thing-type>
+
+	<!-- Channel Type -->
+	<channel-type id="fanDirection">
+		<item-type>String</item-type>
+		<label>SET DIRECTION</label>
+		<description>Channel for setting direction</description>
+		<category>HVAC</category>
+		<tags>
+			<tag>Control</tag>
+			<tag>Wind</tag>
+		</tags>
+		<command>
+			<options>
+				<option value="UP">Up</option>
+				<option value="STOP">Stop</option>
+				<option value="DOWN">Down</option>
+			</options>
+		</command>
+	</channel-type>
+
+
+	<channel-type id="fanSpeed">
+		<item-type>Number</item-type>
+		<label>SETPOINT SPEED</label>
+		<description>Channel for setting speed</description>
+		<category>HVAC</category>
+		<tags>
+			<tag>Control</tag>
+			<tag>Wind</tag>
+		</tags>
+		<state min="1" max="5" step="1" pattern="%d" readOnly="false"/>
+	</channel-type>
+
+
+
+</thing:thing-descriptions>
