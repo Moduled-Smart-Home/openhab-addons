@@ -13,7 +13,7 @@
 		-->
 
 		<label>ModuledSmartHome - Fan Speed Control</label>
-		<description>A single thing capable for controle the speed and direction of a ceiling fan</description>
+		<description>A single thing capable for control the speed and direction of a ceiling fan</description>
 		<category>HVAC</category>
 
 		<channels>

@@ -48,17 +48,15 @@ public class ModuledSmartHomeHandler extends BaseThingHandler {
 
     private final Logger logger = LoggerFactory.getLogger(ModuledSmartHomeHandler.class);
     private final HttpClient httpClient;
+    private String host;
 
     private @Nullable ModuledSmartHomeConfiguration config;
-
-    // private @Nullable HttpClient httpClient = new HttpClient();
 
     public ModuledSmartHomeHandler(Thing thing, HttpClient httpClient) {
         super(thing);
         this.httpClient = httpClient;
-
         config = getConfigAs(ModuledSmartHomeConfiguration.class);
-
+        host = "http://" + config.hostname;
         try {
             httpClient.start();
         } catch (Exception e) {
@@ -101,8 +99,6 @@ public class ModuledSmartHomeHandler extends BaseThingHandler {
 
     @Override
     public void initialize() {
-
-        // TODO: Initialize the handler.
         // The framework requires you to return from this method quickly, i.e. any network access must be done in
         // the background initialization below.
         // Also, before leaving this method a thing status from one of ONLINE, OFFLINE or UNKNOWN must be set. This
@@ -118,21 +114,16 @@ public class ModuledSmartHomeHandler extends BaseThingHandler {
 
         // Example for background initialization:
         scheduler.execute(() -> {
-            boolean thingReachable = false; // <background task with long running initialization here>
-            logger.info("Hostname length: {}", config.hostname.length());
+
             if (config.hostname.length() == 0) {
                 logger.info("Hostname is no informed.");
                 updateStatus(ThingStatus.UNKNOWN, ThingStatusDetail.CONFIGURATION_ERROR);
                 return;
             }
 
-            String uri_str = "http://" + config.hostname + "/api/handshake";
-            logger.info("uri: {}", uri_str);
+            String uriStr = host + "/api/handshake";
 
-            URI uri = URI.create(uri_str);
-
-            logger.info("uri Host: {}", uri.getHost());
-            logger.info("uri Path: {}", uri.getPath());
+            URI uri = URI.create(uriStr);
 
             Request req = httpClient.newRequest(uri).method(HttpMethod.GET).accept("*").header("token", config.password)
                     .timeout(5, TimeUnit.SECONDS);
